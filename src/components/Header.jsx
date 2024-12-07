@@ -3,6 +3,7 @@ import { useState } from "react";
 const Header = () => {
   const [isImg, setIsImg] = useState("/image-product-1.jpg");
   const [count, setCount] = useState(0);
+  const [message, setMessage] = useState("");
   const price = 125;
 
   const images = [
@@ -17,7 +18,7 @@ const Header = () => {
       <nav className="flex items-center justify-between p-5 border-b">
         <div className="flex items-center gap-10">
           <img src="/logo.svg" />
-          <ul className="flex items-center gap-8 text-darkGrayishBlue">
+          <ul className="lg:flex items-center gap-8 text-darkGrayishBlue hidden">
             <li className="cursor-pointer hover:text-orange hover:font-medium">
               Collections
             </li>
@@ -86,7 +87,7 @@ const Header = () => {
         )}
       </div>
 
-      <main className="flex items-center gap-20 p-5 w-[90%] mx-auto py-24">
+      <main className="flex flex-col lg:flex-row items-center gap-10 lg:gap-20 px-5 w-full lg:w-[90%] mx-auto py-10 lg:py-24">
         <section className="flex flex-col items-center justify-center gap-10">
           <img src={isImg} className="rounded-xl" />
           <div className="flex items-center gap-5">
@@ -111,37 +112,46 @@ const Header = () => {
             Featuring a durable rubber outer sole, they'll withstand everything
             the weather can offer.
           </p>
-          <strong className="flex items-center mt-8 text-2xl md:text-3xl">
-            $<span className="mr-3">125.00</span>
-            <span className="text-white bg-veryDarkBlue px-3 py-0.5 rounded-lg text-base">
-              50%
-            </span>
-          </strong>
-          <p className="line-through text-darkGrayishBlue mt-2">$250.00</p>
-          <div className="mt-5 flex items-center gap-5 rounded-xl">
-            <button className="flex items-center justify-between w-1/4 bg-lightGrayishBlue p-3">
-              <img
-                src="/icon-minus.svg"
+          <div className="flex items-center lg:items-start lg:flex-col mt-8 justify-between">
+            <strong className="flex items-center text-2xl md:text-3xl">
+              $<span className="mr-3">125.00</span>
+              <span className="text-white bg-veryDarkBlue px-3 py-0.5 rounded-lg text-base">
+                50%
+              </span>
+            </strong>
+            <p className="line-through text-darkGrayishBlue mt-2">$250.00</p>
+          </div>
+
+          <div className="mt-5 flex flex-col gap-2">
+            <div className="flex flex-col lg:flex-row items-center gap-5">
+              <button className="flex items-center justify-between w-full lg:w-1/4 rounded-xl bg-lightGrayishBlue p-3">
+                <img
+                  src="/icon-minus.svg"
+                  onClick={() => {
+                    if (count > 0) {
+                      setCount(count - 1);
+                    }
+                  }}
+                />
+                <p>{count}</p>
+                <img src="/icon-plus.svg" onClick={() => setCount(count + 1)} />
+              </button>
+              <button
                 onClick={() => {
                   if (count > 0) {
-                    setCount(count - 1);
+                    document.getElementById("cart").classList.remove("hidden");
+                    setMessage("");
+                  } else {
+                    setMessage("Please select the quantity of the product!");
                   }
                 }}
-              />
-              <p>{count}</p>
-              <img src="/icon-plus.svg" onClick={() => setCount(count + 1)} />
-            </button>
-            <button
-              onClick={() => {
-                if (count > 0) {
-                  document.getElementById("cart").classList.remove("hidden");
-                }
-              }}
-              className="flex items-center justify-center gap-5 bg-orange w-1/2 p-3 rounded-xl"
-            >
-              <img src="/icon-cart.svg" />
-              <span className="font-semibold text-lg">Add to cart</span>
-            </button>
+                className="flex items-center justify-center gap-5 bg-orange w-full lg:w-1/2 p-3 rounded-xl"
+              >
+                <img src="/icon-cart.svg" />
+                <span className="font-semibold text-lg">Add to cart</span>
+              </button>
+            </div>
+            <small className="text-red-500">{message}</small>
           </div>
         </section>
       </main>
