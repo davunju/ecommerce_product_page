@@ -17,8 +17,16 @@ const Header = () => {
     <div className="w-full max-w-7xl mx-auto relative">
       <nav className="flex items-center justify-between p-5 border-b">
         <div className="flex items-center gap-10">
-          <img src="/logo.svg" />
-          <ul className="lg:flex items-center gap-8 text-darkGrayishBlue hidden">
+          <div className="flex items-center gap-3">
+            <button className="block lg:hidden">
+              <img src="/icon-menu.svg" />
+            </button>
+            <img src="/logo.svg" />
+          </div>
+          <ul
+            id="menu"
+            className="lg:flex items-center  gap-8 text-darkGrayishBlue hidden"
+          >
             <li className="cursor-pointer hover:text-orange hover:font-medium">
               Collections
             </li>
@@ -58,7 +66,7 @@ const Header = () => {
 
       <div
         id="cart"
-        className="w-full max-w-sm shadow-xl p-5 rounded-xl divide-y absolute right-0 bg-white mx-3 hidden"
+        className="w-full max-w-sm shadow-xl p-5 rounded-xl divide-y absolute right-0 bg-white mx-auto my-2 lg:mx-2 hidden"
       >
         <h1 className="text-lg font-semibold pb-4">Cart</h1>
         {count > 0 ? (
@@ -81,15 +89,15 @@ const Header = () => {
             </button>
           </div>
         ) : (
-          <div className="py-8 text-center font-medium text-darkGrayishBlue">
+          <div className="py-16 text-center font-semibold text-darkGrayishBlue">
             <p>Your cart is empty.</p>
           </div>
         )}
       </div>
 
-      <main className="flex flex-col lg:flex-row items-center gap-10 lg:gap-20 px-5 w-full lg:w-[90%] mx-auto py-10 lg:py-24">
+      <main className="flex flex-col lg:flex-row items-center gap-10 lg:gap-20 w-full lg:w-[90%] mx-auto py-0 pb-5 lg:py-24">
         <section className="flex flex-col items-center justify-center gap-10">
-          <img src={isImg} className="rounded-xl" />
+          <img src={isImg} className="lg:rounded-xl rounded-none" />
           <div className="flex items-center gap-5">
             {images.map((image) => (
               <img
@@ -100,7 +108,7 @@ const Header = () => {
             ))}
           </div>
         </section>
-        <section className="">
+        <section className="px-5">
           <h1 className="text-lg font-semibold text-darkGrayishBlue">
             SNEAKER COMPANY
           </h1>
