@@ -66,7 +66,7 @@ const Header = () => {
 
       <div
         id="cart"
-        className="w-full max-w-sm shadow-xl p-5 rounded-xl divide-y absolute right-0 bg-white mx-auto my-2 lg:mx-2 hidden"
+        className="w-full lg:max-w-sm lg:m-3 shadow-xl p-5 rounded-xl divide-y absolute lg:right-0 bg-white hidden"
       >
         <h1 className="text-lg font-semibold pb-4">Cart</h1>
         {count > 0 ? (
@@ -142,15 +142,17 @@ const Header = () => {
                   }}
                 />
                 <p>{count}</p>
-                <img src="/icon-plus.svg" onClick={() => setCount(count + 1)} />
+                <img
+                  src="/icon-plus.svg"
+                  onClick={() => setCount(count + 1) & setMessage("")}
+                />
               </button>
               <button
                 onClick={() => {
                   if (count > 0) {
                     document.getElementById("cart").classList.remove("hidden");
-                    setMessage("");
                   } else {
-                    setMessage("Please select the quantity of the product!");
+                    setMessage("Please add the quantity of the product!");
                   }
                 }}
                 className="flex items-center justify-center gap-5 bg-orange w-full lg:w-1/2 p-3 rounded-xl"
