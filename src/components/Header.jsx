@@ -87,7 +87,7 @@ const Header = () => {
 
       <div
         id="overlay"
-        className="w-full h-full absolute bg-white bg-opacity-75 z-10 hidden"
+        className="w-full h-full absolute top-0 bg-white bg-opacity-75 z-10 hidden"
       ></div>
 
       <div
