@@ -13,35 +13,33 @@ const Header = () => {
     "/image-product-4.jpg",
   ];
 
+  const menu = ["Collections", "Men", "Women", "About", "Contact"];
+
   return (
     <div className="w-full max-w-7xl mx-auto relative">
       <nav className="flex items-center justify-between p-5 border-b">
         <div className="flex items-center gap-10">
           <div className="flex items-center gap-3">
             <button className="block lg:hidden">
-              <img src="/icon-menu.svg" />
+              <img
+                src="/icon-menu.svg"
+                onClick={() =>
+                  document.getElementById("menu").classList.remove("hidden") &
+                  document.getElementById("overlay").classList.remove("hidden")
+                }
+              />
             </button>
             <img src="/logo.svg" />
           </div>
-          <ul
-            id="menu"
-            className="lg:flex items-center  gap-8 text-darkGrayishBlue hidden"
-          >
-            <li className="cursor-pointer hover:text-orange hover:font-medium">
-              Collections
-            </li>
-            <li className="cursor-pointer hover:text-orange hover:font-medium">
-              Men
-            </li>
-            <li className="cursor-pointer hover:text-orange hover:font-medium">
-              Women
-            </li>
-            <li className="cursor-pointer hover:text-orange hover:font-medium">
-              About
-            </li>
-            <li className="cursor-pointer hover:text-orange hover:font-medium">
-              Contact
-            </li>
+          <ul className="lg:flex items-center text-darkGrayishBlue hidden">
+            {menu.map((list, index) => (
+              <li
+                key={index}
+                className="cursor-pointer hover:bg-paleOrange rounded-lg hover:text-orange p-4"
+              >
+                {list}
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -63,6 +61,34 @@ const Header = () => {
           />
         </div>
       </nav>
+
+      {/* Mobile menu */}
+      <ul
+        id="menu"
+        className="absolute top-5 h-full bg-white p-5 w-[70%] z-20 hidden"
+      >
+        <button
+          onClick={() =>
+            document.getElementById("menu").classList.add("hidden") &
+            document.getElementById("overlay").classList.add("hidden")
+          }
+        >
+          <img src="/icon-close.svg" className="mb-5" />
+        </button>
+        {menu.map((list, index) => (
+          <li
+            key={index}
+            className="font-bold cursor-pointer hover:bg-paleOrange rounded-lg hover:text-orange p-4"
+          >
+            {list}
+          </li>
+        ))}
+      </ul>
+
+      <div
+        id="overlay"
+        className="w-full h-full absolute bg-white bg-opacity-75 z-10 hidden"
+      ></div>
 
       <div
         id="cart"
